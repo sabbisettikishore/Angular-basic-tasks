@@ -1,0 +1,161 @@
+<form [formGroup]="userform">
+        <p-panel header="Basic Details of Employee" [toggleable]="true">
+            
+    <h3>Emp Id</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="empid">
+        <span *ngIf="userform.get('empid').errors?.required && (userform.get('empid').touched)">Emp Id is
+            Required</span>
+        <span *ngIf="userform.get('empid').errors?.minlength">Emp Id Contain Minimum 3 Digits</span>
+        <span *ngIf="userform.get('empid').errors?.maxlength">Emp Id Contain Maximum 4 Digits</span>
+        <span *ngIf="userform.get('empid').errors?.pattern">Emp Id Contain only Digits</span>
+    </div>
+    <div>
+        <app-childform [userform]="userform"></app-childform>
+    </div>
+
+    <h3>Email Id</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="emailid">
+        <span *ngIf="userform.get('emailid').errors?.required && (userform.get('emailid').touched)">Email Id is
+            Required</span>
+        <span *ngIf="userform.get('emailid').errors?.pattern">Email Id follow the Pattern
+            ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.com") </span>
+    </div>
+    <h3>Password</h3>
+    <div>
+        <input pPassword size="30" type="password" formControlName="password">
+        <span *ngIf="userform.get('password').errors?.required && (userform.get('password').touched)">Password is
+            Required</span>
+        <span *ngIf="userform.get('password').errors?.minlength  ">Password Contain Morethan 8 chars</span>
+        <span *ngIf="userform.get('password').errors?.maxlength">Password Contain Maximum Length 64 chars</span>
+        <span *ngIf="userform.get('password').errors?.pattern && !userform.get('password').errors?.minlength && !userform.get('password').errors?.maxlength">Password Contain Atleast One Upper Letter,
+            One Lower Letter,
+            One Number And
+            One Special Charater</span>
+    </div>
+    <h3>Conform Password</h3>
+    <div>
+        <input pPassword size="30" type="password" formControlName="cpassword">
+        <span *ngIf="userform.get('cpassword').errors?.required && (userform.get('cpassword').touched)">Conform Password
+            is Required</span>
+        <span *ngIf="userform.get('cpassword').errors?.password1">Conform Password must be Match with Password</span>
+    </div>
+    <h3>Phone Number</h3>
+    <p-inputMask mask="(999) 999-9999" size="30" placeholder="(999) 999-9999" formControlName="phoneno"></p-inputMask>
+
+    
+    <h3>Experience</h3>
+    <p-spinner size="30" [min]="0" [max]="5" formControlName="experience"></p-spinner>
+
+    <h3>Gender</h3>
+    <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <p-radioButton name="group1" value="male" label="Male" formControlName="gender"></p-radioButton>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <p-radioButton name="group1" value="female" label="Female" formControlName="gender"></p-radioButton>
+    </div>
+
+    <h3>Date of Birth</h3>
+    <p-calendar [showIcon]="true" formControlName="dateofbirth"></p-calendar>
+</p-panel>
+    <h3>Select Branch</h3>
+    <p-dropdown [options]="branch" placeholder="Select a Branch" optionLabel="name" [showClear]="true"
+        formControlName="selectebranch"></p-dropdown>
+
+
+    <h3>Select Languages</h3>
+    <div class="ui-g-12" style="width:250px;margin-bottom:10px">
+        <div>
+            <p-checkbox value="c" label="c" [formControl]="userform.controls['selectedlang']"></p-checkbox>
+        </div>
+        <div>
+            <p-checkbox name="group2" value="c++" label="c++" [formControl]="userform.controls['selectedlang']">
+            </p-checkbox>
+        </div>
+        <div>
+            <p-checkbox name="group2" value="Java" label="Java" [formControl]="userform.controls['selectedlang']">
+            </p-checkbox>
+        </div>
+        <div>
+            <p-checkbox name="group2" value="Python" label="Python" [formControl]="userform.controls['selectedlang']">
+            </p-checkbox>
+        </div>
+        <div>
+            <p-checkbox name="group2" value="PHP" label="PHP" [formControl]="userform.controls['selectedlang']">
+            </p-checkbox>
+        </div>
+        <div>
+            <p-checkbox name="group2" value="JavaScript" label="JavaScript"
+                [formControl]="userform.controls['selectedlang']"></p-checkbox>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+    
+    <h3>Select City</h3>
+
+    <p-autoComplete [suggestions]="citysuggestion" (completeMethod)="searchcity($event)" field="name" [size]="30"
+        placeholder=" Select City" formControlName="selectedcity"></p-autoComplete>
+
+    <h3>Temporary Address</h3>
+    <textarea rows="5" cols="30" pInputTextarea  formControlName="taddress"></textarea>
+
+    <div class="q">
+        <p-inputSwitch value="same" label="same" formControlName="check" (click)="click1()"></p-inputSwitch>If Both
+        Address are Same Click Me
+    </div>
+
+    <h3>Parmanent Address</h3>
+    <textarea rows="5" cols="30" pInputTextarea  formControlName="paddress"></textarea>
+    <br><br>
+</form>
+
+
+    <button pButton type="button" label="Submit" (click)='submitForm()'></button>&nbsp;&nbsp;
+    <button pButton type="button" label="Display" (click)='add()' [disabled]='userform.invalid'></button>&nbsp;&nbsp;
+    <button pButton type="button" label="Reset" (click)='reset()'></button>&nbsp;&nbsp;
+    <button pButton type="button" label="Table Format" (click)='table()' [disabled]='userform.invalid'></button>
+    <div *ngIf=data>{{userform.value|json}}</div>
+
+    <p-table [value]="data1">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Emp Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Conform Password</th>
+                <th>Phone Number</th>
+                <th>Select Branch.name</th>
+                <th>Experience</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+                <th>Select Languages</th>
+                <th>Select City</th>
+                <th>Temporary Address</th>
+                <th>Parmanent Address</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-emp>
+            <tr>
+                <td>{{emp.empid}}</td>
+                <td>{{emp.fisrtname}}</td>
+                <td>{{emp.lastname}}</td>
+                <td>{{emp.emailid}}</td>
+                <td>{{emp.password}}</td>
+                <td>{{emp.cpassword}}</td>
+                <td>{{emp.phoneno}}</td>
+                <td>{{emp.selectebranch}}</td>
+                <td>{{emp.experience}}</td>
+                <td>{{emp.gender}}</td>
+                <td>{{emp.dateofbirth}}</td>
+                <td>{{emp.selectedlang}}</td>
+                <td>{{emp.selectedcity.name}}</td>
+                <td>{{emp.taddress}}</td>
+                <td>{{emp.paddress}}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+

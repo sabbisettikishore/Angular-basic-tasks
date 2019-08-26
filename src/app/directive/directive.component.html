@@ -1,0 +1,92 @@
+<p-radioButton name="groupname" value="green" (click)="color='green'" label="Green"></p-radioButton><br>
+<p-radioButton name="groupname" value="blue" (click)="color='blue' " label="Blue"></p-radioButton><br>
+<p-radioButton name="groupname" value="orange" (click)="color='orange'" label="Orange"></p-radioButton><br>
+
+
+<div [appColor]="color">Welcome to Angular</div>
+
+<br><br><br>
+<h3>ngIf</h3>
+<div *ngIf="color;then template1; else template2"></div>
+<ng-template #template1>
+    <div class="safe">Years DropDown is open</div>
+</ng-template>
+
+<ng-template #template2>
+    <div class="danger">Years DropDown is Closed</div>
+</ng-template>
+
+<p-dropdown [options]="branch" placeholder="Select a Branch" optionLabel="name" [showClear]="true" [(ngModel)]="empdata"
+    (click)='onClick()'></p-dropdown>
+<p-dropdown [options]="years" placeholder="Select a year" [showClear]="true" optionLabel="year" *ngIf='display'>
+</p-dropdown>
+
+
+<br><br><br>
+
+<h3>ngSwitch</h3>
+<p-dropdown [options]="products" [(ngModel)]="prod" optionLabel="name" [showClear]="true" placeholder="Select Product">
+</p-dropdown>&nbsp;&nbsp;
+<p>U Select Product Details is</p>
+<div [ngSwitch]="prod.id">
+    <p *ngSwitchCase="1">The Product id : {{prod.id}} name: {{prod.name}} price: {{prod.price}}</p>
+    <p *ngSwitchCase="2">The Product id :{{prod.id}} name: {{prod.name}} price:{{prod.price}}</p>
+    <p *ngSwitchCase="3">The Product id :{{prod.id}} name: {{prod.name}} price:{{prod.price}}</p>
+    <p *ngSwitchCase="4">The Product id :{{prod.id}} name: {{prod.name}} price:{{prod.price}}</p>
+    <p *ngSwitchCase="5">The Product id :{{prod.id}} name: {{prod.name}} price:{{prod.price}}</p>
+    <p *ngSwitchDefault>Product not available</p>
+</div>
+
+<h3>ngFor</h3>
+
+<div *ngFor="let product of products ">
+    {{product.id}} {{product.name}} {{product.price}}
+</div>
+
+<br><br><br>
+
+
+
+<h2>Structural Directives</h2>
+
+
+
+<p-toggleButton [style]="{'width':'150px'}" (click)="data=!data"></p-toggleButton>
+<br><br>
+<div *appStructural=data>
+    <p-dropdown [options]="angular" [(ngModel)]='topics' placeholder="Select a Branch" optionLabel="topic"
+        [showClear]="true" [(ngModel)]="empdata"></p-dropdown>
+
+
+
+    <p>U Selected Topic fron Angular is:</p>
+    <h2>{{topics.topic}}</h2>
+
+    <div [ngSwitch]="topics.topic">
+        <p *ngSwitchCase="'forms'">Forms are two types 1)Template Driven Form
+            2)Reactive Forms (or) Model Driven Form</p>
+        <p *ngSwitchCase="'component'"> The Component class represents certain section of the web page.The component
+            class includes “properties” (to store data), “methods” (event handler methods to manipulate data)</p>
+        <p *ngSwitchCase="'module'">Module is a part of the project. Module is a collection of components, directives
+            and pipes that are related to one specific task of the project</p>
+        <p *ngSwitchCase="'pipes'"> The “pipe” is a class that transforms the value into the user-expected format for
+            displaying purpose. </p>
+        <p *ngSwitchCase="'component communication'"> We can share the data from parent component to child component
+            using “property binding”. Assign the value of “parent component’s property” to “child component’s property”,
+            using “property binding”. </p>
+        <p *ngSwitchCase="'directives'"> Directives are the attributes provided by Angular 2+. Directives provide
+            additional functionality to the html tags. Directives are used in templates. </p>
+        <p *ngSwitchCase="'routing'">This package is used to creating “routing” (page navigation) in angular 2+
+            applications.
+            This package has one module: RouterModule </p>
+        <p *ngSwitchCase="'services'">The service can be called from any component. Service can also be called from
+            another service. Service contains re-usable code. Usually, Service contains code for CRUD
+            (Create-Retrieve-Update-Delete) operations</p>
+        <p *ngSwitchDefault>Select the Topic from DropDown</p>
+    </div>
+
+    <br><br><br>
+
+    <div *ngFor="let data of angular">{{data.topic}}</div>
+
+</div>

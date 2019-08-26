@@ -1,0 +1,186 @@
+<app-head></app-head>
+<form [formGroup]="reg">
+    <h1>Personal Details</h1>
+    <div class="ui-g-12">
+
+        <div class="ui-g-1">
+            <label>First Name </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='firstname'>
+        </div>
+        <!-- <div class="ui-g-1">
+            <label>Middle Name </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='mname'>
+        </div> -->
+        <div class="ui-g-1">
+            <label>Last Name </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='lastname'>
+        </div>
+    </div>
+
+    <!-- <div class="ui-g-12">
+        <div class="ui-g-1">
+            <label>Emp Id </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='id'>
+        </div>
+        <div class="ui-g-1">
+            <label>ITG </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='itg'>
+        </div>
+        <div class="ui-g-1">
+            <label>Date of Hire </label>
+        </div>
+        <div class="ui-g-4">
+            <p-calendar [showIcon]="true" formControlName='hire'></p-calendar>
+        </div>
+    </div> -->
+
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <label>Mail Id </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='email'>
+        </div>
+        <!-- <div class="ui-g-1">
+            <label>Office Mail </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='oemail'>
+        </div>
+        <div class="ui-g-1">
+            <label>Other Mail </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='temail'>
+        </div> -->
+    </div>
+
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <label>Phone no </label>
+        </div>
+        <div class="ui-g-4">
+            <p-inputMask mask="(999) 999-9999" formControlName='phno' placeholder="(999) 999-9999"></p-inputMask>
+        </div>
+        <!-- <div class="ui-g-1">
+            <label>Home Phone no </label>
+        </div>
+        <div class="ui-g-4">
+            <p-inputMask mask="(999) 999-9999" formControlName='hphno' placeholder="(999) 999-9999"></p-inputMask>
+        </div>
+        <div class="ui-g-1">
+            <label>Alter Phone no</label>
+        </div>
+        <div class="ui-g-4">
+            <p-inputMask mask="(999) 999-9999" formControlName='alphno' placeholder="(999) 999-9999"></p-inputMask>
+        </div> -->
+    </div>
+
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <label>Gender</label>
+        </div>
+        <div class="ui-g-4">
+            <p-radioButton name="groupname" value="male" label="Male" formControlName='gender'></p-radioButton>
+            &nbsp;&nbsp;
+            <p-radioButton name="groupname" value="female" label="Female" formControlName='gender'></p-radioButton>
+        </div>
+        <div class="ui-g-1">
+            <label>Date of Birth </label>
+        </div>
+        <div class="ui-g-4">
+            <p-calendar formControlName='birth' [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:4000">
+            </p-calendar>
+        </div>
+    </div>
+    <!-- <h1>Educational Details</h1>
+    <label class='edu'>SSC</label>
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <label>School Name </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='sname'>
+        </div>
+        <div class="ui-g-1">
+            <label>Percentage </label>
+        </div>
+        <div class="ui-g-4">
+            <input type="text" pInputText formControlName='percent'>
+        </div>
+        <div class="ui-g-1">
+            <label>Year of Passout</label>
+        </div>
+        <div class="ui-g-4">
+            <p-calendar [showIcon]="true" formControlName='passout'></p-calendar>
+        </div>
+    </div> -->
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <span>Temporary Address</span>
+        </div>
+        <div class="ui-g-4">
+            <textarea rows="5" cols="30" pInputTextarea formControlName="taddress"></textarea>
+        </div>
+    </div>
+    <div class="q">
+        <p-inputSwitch value="same" label="same" formControlName="check" (click)="click1()"></p-inputSwitch>If Both
+        Address are Same Click Me
+    </div>
+
+    <div class="ui-g-12">
+        <div class="ui-g-1">
+            <span>Parmanent Address</span>
+        </div>
+        <div class="ui-g-4">
+            <textarea rows="5" cols="30" pInputTextarea formControlName="address"></textarea>
+        </div>
+    </div>
+</form>
+<button pButton type="button" label="Display" (click)='add()'></button>
+<button pButton type="button" label="Add Details" (click)='create(reg.value)'></button>
+<button pButton type="button" label="Update Data" (click)='updateData(reg.value)'></button>
+<pre *ngIf=data1>{{reg.value|json}}</pre>
+
+{{formdata|json}}
+
+<p-table [value]="formdata">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Mail Id</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Skills</th>
+            <th>Address</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+        <tr>
+            <td>{{data.firstname}}</td>
+            <td>{{data.lastname}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.phno}}</td>
+            <td>{{data.gender}}</td>
+            <td>{{data.birth}}</td>
+            <td>{{data.technicalskills}}</td>
+            <td>{{data.address}}</td>
+            <td><button pButton type="button" label="Delete" (click)='delete(data)'></button>
+            <button pButton type="button" label="Update" (click)='update(data)'></button></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<app-footer></app-footer>

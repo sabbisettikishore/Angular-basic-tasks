@@ -1,0 +1,28 @@
+
+        <button pButton type="button" label="Create" routerLink='/create' class="ui-button-rounded"></button>
+        
+
+<p-table [value]="empdata">
+        <ng-template pTemplate="header">
+                <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>salary</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-i>
+                <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.employee_name}}</td>
+                        <td>{{i.employee_salary}}</td>
+                        <td>{{i.employee_age}}</td>
+                        <td><button pButton type="button" label="Update" (click)='editUser(i.id)' class="ui-button-rounded"></button>
+                                <button pButton type="button" label="Detele" (click)='deleteUser(i.id)'
+                                        class="ui-button-rounded ui-button-danger"></button>
+                        </td>
+
+                </tr>
+        </ng-template>
+</p-table>

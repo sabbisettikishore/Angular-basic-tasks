@@ -1,0 +1,21 @@
+<form [formGroup]="userform">
+        <h3>First Name</h3>
+        <div>
+                <input type="text" size="30" pInputText formControlName="fisrtname">
+                <span *ngIf="userform.get('fisrtname').touched  && userform.get('fisrtname').errors?.required">First
+                        Name
+                        is Required</span>
+                <span *ngIf="userform.get('fisrtname').errors?.minlength">First Name Contain Minimum 3 Chars</span>
+                <span *ngIf="userform.get('fisrtname').errors?.pattern">First Name Contain only Characters</span>
+        </div>
+        <h3>Last Name</h3>
+        <div>
+                <input type="text" size="30" pInputText formControlName="lastname">
+                <span *ngIf="userform.get('lastname').errors?.required && userform.get('lastname').touched">Last Name is
+                        Required</span>
+                <span *ngIf="userform.get('lastname').errors?.minlength">Last Name Contain Minimum 3 Chars</span>
+                <span *ngIf="userform.get('lastname').errors?.pattern">Last Name Contain only Characters</span>
+        </div>
+
+
+</form>

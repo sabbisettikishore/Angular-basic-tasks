@@ -1,0 +1,21 @@
+<form [formGroup]='login' class='login'>
+
+    <div class="ui-g">
+    <div class="ui-g-1">
+        <label>User Name </label>
+    </div>
+    <div class="ui-g-3">
+        <input type="text" pInputText formControlName='uname'>
+    </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-1">
+            <label>Middle Name </label>
+        </div>
+        <div class="ui-g-3">
+            <input type="password" pInputText formControlName='pass'>
+        </div>
+    </div>
+    <a routerLink='reg'>New User</a>
+</form>
+<router-outlet></router-outlet>

@@ -1,0 +1,64 @@
+<p>type-script works!</p>
+<p-table [value]="data2">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Address type</th>
+            <th>Address One</th>
+            <th>Address two</th>
+            <th>Address three</th>
+            <th>Address Four</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Country</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body"  let-data >
+            <tr *ngFor="let dat of data.deliveryAddresses">
+            <td><button pButton type="button" label="Update" (click)='getdate(dat)' class="ui-button-rounded"></button></td>
+            <td>{{dat.addressLineOne}}</td>
+            <td>{{dat.addressLineTwo}}</td>
+            <td>{{dat.addressLineThree}}</td>
+            <td>{{dat.addressLineFour}}</td>
+            <td>{{dat.city}}</td>
+            <td>{{dat.state}}</td>
+            <td>{{dat.zipCode}}</td>
+            <td>{{dat.country}}</td>
+
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- <pre *ngFor="let add of data2; let i=index;">
+    {{add|json}}
+    
+</pre> -->
+ 
+ <!-- Type casting Example  -->
+ <!-- <h4>Type Casting Example</h4>
+ID: <input type="text" name="empId" value="500"><br>
+ Name: <input type="text" id="name"><br>
+percentage: <input type="text" id="per"><br> 
+<h4>Student</h4>
+<p>Student ID: <span id="s1span1"></span></p>  
+   <p>Student Name: <span id="s1span2"></span></p>    
+ <p>Percentage: <span id="s1span3"></span></p>      -->
+
+ <form [formGroup]=user>
+        <h3>Id</h3>
+        <div>
+            <input type="text" size="30" pInputText formControlName="addressLineOne">
+        </div>
+        <h3>Name</h3>
+        <div>
+            <input type="text" size="30" pInputText formControlName="addressLineTwo">
+        </div>
+        <h3>Gender</h3>
+        <div>
+            <input type="text" size="30" pInputText formControlName="addressLineThree">
+        </div>
+        <button pButton type="button" label="Update Data" (click)='update(user.value)'
+        class="ui-button-rounded"></button>&nbsp;
+    </form>
+    

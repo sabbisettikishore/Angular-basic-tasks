@@ -1,0 +1,27 @@
+<form #myform1="ngForm" [appCustomvalid]="['password','cpassword']">
+  <h3>Password</h3>
+  <div>
+    <input pPassword size="30" type="password"  [(ngModel)]="password" name="password" required="required" minlength="6"
+      maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{6,10}$" #pass="ngModel" onCopy= "return false" onDrag= "return false" onCut="return false" onDrop="return false" onPaste=" return false" autocomplete=off   
+      onkeyup="this.type='password'"
+      onkeydown="this.type='text'">
+    <span *ngIf="pass.errors?.required && (pass.touched)">Password is Required</span>
+    <span *ngIf="pass.errors?.minlength">Password Contain Morethan 6 chars</span>
+    <span *ngIf="pass.errors?.maxlength">Password Contain Maximum Length 10 chars</span>
+    <span *ngIf="pass.errors?.pattern">Password Contain Atleast One Upper Letter,
+      One Lower Letter,
+      One Number And
+      One Special Charater</span>
+      <span *ngIf="pass.errors?.valid1">Password Can't match with username</span>
+
+  </div>
+
+  <h3>Conform Password</h3>
+  <div>
+    <input pPassword size="30" type="password" [(ngModel)]="cpassword" name="cpassword" required="required"
+      #cpass="ngModel" >
+    <span *ngIf="cpass.errors?.required && (cpass.touched)">Conform Password is Required</span>
+    <span *ngIf="cpass.errors?.invalid  && !cpass.errors?.required">Password and Conform Password Should be Same</span>
+
+  </div>
+  </form>

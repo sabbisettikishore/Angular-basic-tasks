@@ -1,0 +1,11 @@
+<form [formGroup]="check">
+        <label formArrayName="orders" *ngFor="let order of check.controls.orders.controls; let i = index">
+          <input type="checkbox" [formControlName]="i">
+          
+          {{orders[i].tech}}<br>
+        </label>
+        <br>
+        <button pButton (click)="submit()">submit</button>&nbsp;&nbsp;
+        <button pButton (click)="reset()">Reset</button>
+</form>
+{{selectedOrderIds}}

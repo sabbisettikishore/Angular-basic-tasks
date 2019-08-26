@@ -1,0 +1,28 @@
+<form [formGroup]=create>
+    <h3>First Name</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="name">
+        <span *ngIf="create.get('name').touched  && create.get('name').errors?.required">First
+            Name
+            is Required</span>
+        <span *ngIf="create.get('name').errors?.minlength">First Name Contain Minimum 3 Chars</span>
+        <span *ngIf="create.get('name').errors?.pattern">First Name Contain only Characters</span>
+    </div>
+    <h3>salary</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="salary">
+        <span *ngIf="create.get('salary').errors?.required && create.get('salary').touched">Last Name is
+            Required</span>
+        <span *ngIf="create.get('salary').errors?.minlength">Last Name Contain Minimum 3 Chars</span>
+        <span *ngIf="create.get('salary').errors?.pattern">Last Name Contain only Characters</span>
+    </div>
+    <h3>Age</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="age">
+        <span *ngIf="create.get('age').errors?.required && create.get('age').touched">Last Name is
+            Required</span>
+        <span *ngIf="create.get('age').errors?.minlength">Last Name Contain Minimum 3 Chars</span>
+        <span *ngIf="create.get('age').errors?.pattern">Last Name Contain only Characters</span>
+    </div>
+</form>
+<td><button pButton type="button" label="Create" (click)="store()" class="ui-button-rounded"></button>

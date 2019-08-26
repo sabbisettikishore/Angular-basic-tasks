@@ -1,0 +1,18 @@
+<div [formGroup]="userform">
+    <h3>Emp Id</h3>
+    <input  type="text" size="30" pInputText formControlName="empid">
+
+    <h3>Name</h3>
+    <input  type="text" size="30" pInputText formControlName="name">
+
+    <h3>Email Id</h3>
+    <input  type="text" size="30" pInputText formControlName="emailid">
+
+
+    <h3>Phnone Number</h3>
+    <input  type="text" size="30" pInputText formControlName="phno">
+
+    <app-input1 [data]="userform.value"></app-input1>
+    
+    <app-input1 [data2]="data1"></app-input1>
+<div>

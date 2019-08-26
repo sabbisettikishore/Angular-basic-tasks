@@ -1,0 +1,28 @@
+<form [formGroup]=update>
+    <h3>First Name</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="name">
+        <span *ngIf="update.get('name').touched  && update.get('name').errors?.required">First
+            Name
+            is Required</span>
+        <span *ngIf="update.get('name').errors?.minlength">First Name Contain Minimum 3 Chars</span>
+        <span *ngIf="update.get('name').errors?.pattern">First Name Contain only Characters</span>
+    </div>
+    <h3>salary</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="salary">
+        <span *ngIf="update.get('salary').errors?.required && update.get('salary').touched">Last Name is
+            Required</span>
+        <span *ngIf="update.get('salary').errors?.minlength">Last Name Contain Minimum 3 Chars</span>
+        <span *ngIf="update.get('salary').errors?.pattern">Last Name Contain only Characters</span>
+    </div>
+    <h3>Age</h3>
+    <div>
+        <input type="text" size="30" pInputText formControlName="age">
+        <span *ngIf="update.get('age').errors?.required && update.get('age').touched">Last Name is
+            Required</span>
+        <span *ngIf="update.get('age').errors?.minlength">Last Name Contain Minimum 3 Chars</span>
+        <span *ngIf="update.get('age').errors?.pattern">Last Name Contain only Characters</span>
+    </div>
+</form>
+<td><button pButton type="button" label="Update" (click)='updateUser()' class="ui-button-rounded"></button>

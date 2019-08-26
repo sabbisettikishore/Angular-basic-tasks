@@ -1,0 +1,14 @@
+<p>parameter-and-chain-pipe works!</p>
+<h4>Parameterized Pipes</h4>
+
+{{todaydate | date:format}}<br>
+<button (click)='click()'>Click Here to Change the Format</button>
+<br><br>
+{{1232.546456| currency :format1}}
+<button (click)='click1()'>Click Here to Change the Format</button>
+
+
+<h4>Chaining Pipes</h4>
+{{ data1 | json | uppercase}}
+<br><br>
+{{ data1 | json | lowercase}}

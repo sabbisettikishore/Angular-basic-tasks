@@ -1,0 +1,29 @@
+<h1>Data-Binding</h1>
+<h4>Interpolation Binding</h4>
+
+<p>Company Name is :</p>
+{{company}}
+
+<h4>Property Binding</h4>
+Emp Id:
+<input type="text" [value]='empid' readonly>
+<br><br><br>
+Emp Salary:
+<input type="text" [value]='empsal'>
+
+
+<h4>Event Binding</h4>
+
+{{empname}}
+<br><br>
+<button (click)='onClick()' *ngIf='data'>Click</button>
+
+
+<h4>Two-Way Binding</h4>
+
+<input type="text" [(ngModel)]="id">
+<p>Data You Entered:{{id}}</p>
+
+
+<h4>String Interpolation</h4>
+<p>Full Nmae is: {{fullname}}</p>

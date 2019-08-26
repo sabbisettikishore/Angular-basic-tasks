@@ -1,0 +1,173 @@
+<form #myform="ngForm" [appCustomvalid]="['password','cpassword']">
+  <h3>Emp Id</h3>
+  <div>
+    <input type="text" size="30" pInputText [(ngModel)]="empid" name="empid" required="required" minlength="3"
+      maxlength="4" pattern="^[0-9]+$" #id="ngModel">
+    <span *ngIf="id.errors?.required && (id.touched)">Emp Id is Required</span>
+    <span *ngIf="id.errors?.minlength">Emp Id Contain Minimum 3 Digits</span>
+    <span *ngIf="id.errors?.maxlength">Emp Id Contain Maximum 4 Digits</span>
+    <span *ngIf="id.errors?.pattern">Emp Id Contain only Digits</span>
+  </div>
+
+
+  <h3>First Name</h3>
+  <div>
+    <input type="text" size="30" pInputText [(ngModel)]="firstname" name="firstname" required="required" minlength="3"
+      pattern="^[a-zA-Z]+$" #fname="ngModel">
+    <span *ngIf="fname.errors?.required && (fname.touched)">First Name is Required</span>
+    <span *ngIf="fname.errors?.minlength">First Name Contain Minimum 3 Charaters</span>
+    <span *ngIf="fname.errors?.pattern">First Name Contain only Characters</span>
+  </div>
+
+
+  <h3>Last Name</h3>
+  <div>
+    <input type="text" size="30" pInputText [(ngModel)]="lastname" name="lastname" required="required" minlength="3"
+      pattern="^[a-zA-Z]+$" #lname="ngModel">
+    <span *ngIf="lname.errors?.required && (lname.touched)">Last Name is Required</span>
+    <span *ngIf="lname.errors?.minlength">Last Name Contain Minimum 3 Charaters</span>
+    <span *ngIf="lname.errors?.pattern">Last Name Contain only Characters</span>
+  </div>
+
+
+  <h3>Email Id</h3>
+  <div>
+    <input type="text" size="30" pInputText [(ngModel)]="emailid" name="emailid" required="required"
+      pattern="^[a-zA-Z0-9.-]+@[a-zA-z0-9]+.com+$" #mail="ngModel">
+    <span *ngIf="mail.errors?.required && (mail.touched)">Email Id is Required</span>
+    <span *ngIf="mail.errors?.pattern">Email Id follow the Pattern ("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.com")r</span>
+  </div>
+
+  <h3>Password</h3>
+  <div>
+    <input pPassword size="30" type="password" [(ngModel)]="password" name="password" required="required" minlength="6"
+      maxlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{6,10}$" #pass="ngModel">
+    <span *ngIf="pass.errors?.required && (pass.touched)">Password is Required</span>
+    <span *ngIf="pass.errors?.minlength">Password Contain Morethan 6 chars</span>
+    <span *ngIf="pass.errors?.maxlength">Password Contain Maximum Length 10 chars</span>
+    <span *ngIf="pass.errors?.pattern">Password Contain Atleast One Upper Letter,
+      One Lower Letter,
+      One Number And
+      One Special Charater</span>
+  </div>
+
+  <h3>Conform Password</h3>
+  <div>
+    <input pPassword size="30" type="password" [(ngModel)]="cpassword" name="cpassword" required="required"
+      #cpass="ngModel">
+    <span *ngIf="cpass.errors?.required && (cpass.touched)">Conform Password is Required</span>
+    <span *ngIf="cpass.errors?.invalid  && !cpass.errors?.required">Password and Conform Password Should be Same</span>
+
+  </div>
+
+  <h3>Phone Number</h3>
+  <p-inputMask mask="(999) 999-9999" size="30" placeholder="(999) 999-9999" [(ngModel)]="phoneno" name="phoneno">
+  </p-inputMask>
+
+  <h3>Select Branch</h3>
+  <p-dropdown [options]="branch" placeholder="Select a Branch" optionLabel="name" [showClear]="true"
+    [(ngModel)]="selectebranch" name="selectebranch"></p-dropdown>
+
+  <h3>Experience</h3>
+  <p-spinner size="30" [min]="0" [max]="5" [(ngModel)]="experience" name="experience"></p-spinner>
+
+  <h3>Gender</h3>
+  <div class="ui-g" style="width:250px;margin-bottom:10px">
+    <p-radioButton name="gender" value="male" label="Male" [(ngModel)]="gender"></p-radioButton>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <p-radioButton name="gender" value="female" label="Female" [(ngModel)]="gender"></p-radioButton>
+  </div>
+
+  <h3>Date of Birth</h3>
+  <p-calendar [showIcon]="true" [(ngModel)]="dateofbirth" name="dateofbirth"></p-calendar>
+
+  <h3>Select Languages</h3>
+  <div class="ui-g-12" style="width:250px;margin-bottom:10px">
+    <div>
+      <p-checkbox value="c" label="c" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+    <div>
+      <p-checkbox value="c++" label="c++" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+    <div>
+      <p-checkbox value="Java" label="Java" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+    <div>
+      <p-checkbox value="Python" label="Python" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+    <div>
+      <p-checkbox value="PHP" label="PHP" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+    <div>
+      <p-checkbox value="JavaScript" label="JavaScript" [(ngModel)]="selectedlang" name="selectedlang"></p-checkbox>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br>
+
+
+  <h3>Select City</h3>
+  <p-autoComplete [suggestions]="citysuggestion" (completeMethod)="searchcity($event)" field="name" [size]="30"
+    placeholder=" Select City" [(ngModel)]="selectedcity" name="selectedcity"></p-autoComplete>
+
+
+  <h3>Temporary Address</h3>
+  <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="taddress" name="taddress"></textarea>
+
+  <div class="q">
+    <p-inputSwitch value="same" label="same" [(ngModel)]="check" name="check" (click)="click1(myform)"></p-inputSwitch>
+    If Both Address are Same Click Me
+  </div>
+
+
+  <h3>Parmanent Address</h3>
+  <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="paddress" name="paddress"></textarea>
+  <br><br>
+</form>
+
+  <button pButton type="button" label="Display" (click)='add()' [disabled]="!myform.valid"></button>&nbsp;&nbsp;
+  <button pButton type="button" label="Reset" (click)='reset(myform)'></button>&nbsp;&nbsp;
+  <button pButton type="button" label="Table Format" (click)='table(myform)' [disabled]="!myform.valid"></button>
+  <div *ngIf=data>{{myform.value|json}}</div>
+
+
+  <p-table [value]="data1">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Emp Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Conform Password</th>
+        <th>Phone Number</th>
+        <th>Select Branch</th>
+        <th>Experience</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Select Languages</th>
+        <th>Select City</th>
+        <th>Temporary Address</th>
+        <th>Parmanent Address</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-emp>
+      <tr>
+        <td>{{emp.empid}}</td>
+        <td>{{emp.firstname}}</td>
+        <td>{{emp.lastname}}</td>
+        <td>{{emp.emailid}}</td>
+        <td>{{emp.password}}</td>
+        <td>{{emp.cpassword}}</td>
+        <td>{{emp.phoneno}}</td>
+        <td>{{emp.selectebranch}}</td>
+        <td>{{emp.experience}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{emp.dateofbirth}}</td>
+        <td>{{emp.selectedlang}}</td>
+        <td>{{emp.selectedcity.name}}</td>
+        <td>{{emp.taddress}}</td>
+        <td>{{emp.paddress}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
